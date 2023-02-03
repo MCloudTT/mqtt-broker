@@ -102,7 +102,7 @@ fn decode_variable_int(bytes: &mut Cursor<&mut BytesMut>) -> Result<Option<u32>,
 
     loop {
         let encoded_byte = read_u8!(bytes);
-        
+
         value += ((encoded_byte & 0b0111_1111) as u32) * multiplier;
 
         if multiplier >= (128 * 128 * 128) {
@@ -412,7 +412,7 @@ fn decode_connect(bytes: &mut Cursor<&mut BytesMut>) -> Result<Option<Packet>, D
             })?);
         }
 
-        let topic = Topic::from_str(read_string!(bytes).as_str()).unwrap();
+        let topic = Topic::from_str(read_string!(bytes).as_str())?;
         let payload = read_binary_data!(bytes);
 
         Some(FinalWill {
