@@ -408,7 +408,7 @@ fn decode_connect(bytes: &mut Cursor<&mut BytesMut>) -> Result<Option<Packet>, D
             })?);
         }
 
-        let topic = Topic::from_str(read_string!(bytes).as_str()).unwrap();
+        let topic = Topic::from_str(read_string!(bytes).as_str())?;
         let payload = read_binary_data!(bytes);
 
         Some(FinalWill {
