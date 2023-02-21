@@ -1027,6 +1027,16 @@ impl PublishPacketBuilder {
         self
     }
 
+    pub fn with_qos(mut self, qos: QoS) -> Self {
+        self.qos = qos;
+        self
+    }
+
+    pub fn with_packet_id(mut self, packet_id: u16) -> Self {
+        self.packet_id = Some(packet_id);
+        self
+    }
+
     pub fn build(self) -> PublishPacket {
         PublishPacket {
             is_duplicate: self.is_duplicate,
