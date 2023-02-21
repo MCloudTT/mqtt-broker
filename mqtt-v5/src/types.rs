@@ -828,7 +828,7 @@ impl PacketSize for SubscriptionTopic {
 }
 
 // Control Packets
-#[derive(Debug, Default, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct ConnectPacket {
     // Variable Header
     pub protocol_name: String,
@@ -852,6 +852,30 @@ pub struct ConnectPacket {
     pub will: Option<FinalWill>,
     pub user_name: Option<String>,
     pub password: Option<String>,
+}
+
+impl Default for ConnectPacket {
+    fn default() -> Self {
+        ConnectPacket {
+            protocol_name: "MQTT".to_string(),
+            protocol_version: ProtocolVersion::V500,
+            clean_start: true,
+            keep_alive: 0,
+            session_expiry_interval: None,
+            receive_maximum: None,
+            maximum_packet_size: None,
+            topic_alias_maximum: None,
+            request_response_information: None,
+            request_problem_information: None,
+            user_properties: Vec::new(),
+            authentication_method: None,
+            authentication_data: None,
+            client_id: "".to_string(),
+            will: None,
+            user_name: None,
+            password: None,
+        }
+    }
 }
 
 impl ConnectPacket {
