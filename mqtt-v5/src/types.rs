@@ -5,7 +5,7 @@ use crate::{
 use bytes::{BufMut, Bytes, BytesMut};
 use num_enum::TryFromPrimitive;
 use properties::*;
-use std::time::Duration;
+use std::{str::FromStr, time::Duration};
 
 #[derive(Debug)]
 pub enum DecodeError {
@@ -992,6 +992,58 @@ impl From<FinalWill> for PublishPacket {
 
             // Payload
             payload: will.payload,
+        }
+    }
+}
+
+#[derive(Debug, Default)]
+pub struct PublishPacketBuilder {
+    pub is_duplicate: bool,
+    pub qos: QoS,
+    pub retain: bool,
+
+    pub topic: Topic,
+    pub packet_id: Option<u16>,
+
+    pub payload_format_indicator: Option<PayloadFormatIndicator>,
+    pub message_expiry_interval: Option<MessageExpiryInterval>,
+    pub topic_alias: Option<TopicAlias>,
+    pub response_topic: Option<ResponseTopic>,
+    pub correlation_data: Option<CorrelationData>,
+    pub user_properties: Vec<UserProperty>,
+    pub subscription_identifiers: Vec<SubscriptionIdentifier>,
+    pub content_type: Option<ContentType>,
+
+    pub payload: Bytes,
+}
+
+impl PublishPacketBuilder {
+    pub fn new(topic: String, payload: Bytes) -> Self {
+        Self { topic: Topic::from_str(&topic).unwrap(), payload, ..Default::default() }
+    }
+    pub fn with_retain(mut self, retain: bool) -> Self {
+        self.retain = retain;
+        self
+    }
+    pub fn build(self) -> PublishPacket {
+        PublishPacket {
+            is_duplicate: self.is_duplicate,
+            qos: self.qos,
+            retain: self.retain,
+
+            topic: self.topic,
+            packet_id: self.packet_id,
+
+            payload_format_indicator: self.payload_format_indicator,
+            message_expiry_interval: self.message_expiry_interval,
+            topic_alias: self.topic_alias,
+            response_topic: self.response_topic,
+            correlation_data: self.correlation_data,
+            user_properties: self.user_properties,
+            subscription_identifiers: self.subscription_identifiers,
+            content_type: self.content_type,
+
+            payload: self.payload,
         }
     }
 }
