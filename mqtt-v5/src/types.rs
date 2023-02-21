@@ -1021,10 +1021,12 @@ impl PublishPacketBuilder {
     pub fn new(topic: String, payload: Bytes) -> Self {
         Self { topic: Topic::from_str(&topic).unwrap(), payload, ..Default::default() }
     }
+
     pub fn with_retain(mut self, retain: bool) -> Self {
         self.retain = retain;
         self
     }
+
     pub fn build(self) -> PublishPacket {
         PublishPacket {
             is_duplicate: self.is_duplicate,
