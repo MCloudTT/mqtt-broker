@@ -1037,8 +1037,13 @@ impl PublishPacketBuilder {
         self
     }
 
-    pub fn build(self) -> PublishPacket {
-        PublishPacket {
+    pub fn build(self) -> Result<PublishPacket, TopicParseError> {
+        // topic is not allowed to be default
+        if self.topic == Topic::default() {
+            return Err(TopicParseError::EmptyTopic);
+        }
+
+        Ok(PublishPacket {
             is_duplicate: self.is_duplicate,
             qos: self.qos,
             retain: self.retain,
@@ -1056,7 +1061,7 @@ impl PublishPacketBuilder {
             content_type: self.content_type,
 
             payload: self.payload,
-        }
+        })
     }
 }
 
