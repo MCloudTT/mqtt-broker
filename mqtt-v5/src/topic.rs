@@ -30,7 +30,7 @@ impl TopicFilter {
 /// use mqtt_v5::topic::Topic;
 /// let topic = Topic::from_str("my_topic").unwrap();
 /// ```
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct Topic {
     topic_name: String,
     level_count: u32,
