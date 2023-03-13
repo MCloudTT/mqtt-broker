@@ -5,7 +5,7 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/bschwind/mqtt-broker"
 version = "0.2.0"
-authors = ["Brian Schwind <brianmschwind@gmail.com>"]
+authors = ["Brian Schwind <brianmschwind@gmail.com>", "Nereuxofficial <nereux@tuta.io>", "mfloto <git@mfloto.com>"]
 edition = "2018"
 
 [features]
@@ -15,8 +15,8 @@ websocket = ["codec", "websocket-codec", "sha1", "base64"]
 
 [dependencies]
 bytes = "1"
-num_enum = "0.4"
+num_enum = "0.5.11"
 tokio-util = { optional = true, version = "0.7", features = ["codec"] }
 websocket-codec = { optional = true, version = "0.5" }
-sha1 = { optional = true, version = "0.6" }
-base64 = { optional = true, version = "0.11" }
+sha1 = { optional = true, version = "0.6.1" }
+base64 = { optional = true, version = "0.21.0" }
