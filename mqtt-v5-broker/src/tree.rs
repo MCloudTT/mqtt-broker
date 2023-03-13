@@ -1,4 +1,4 @@
-use mqtt_v5::topic::{Topic, TopicFilter, TopicLevel};
+use mqtt_v5_fork::topic::{Topic, TopicFilter, TopicLevel};
 use std::collections::{hash_map::Entry, HashMap};
 
 // TODO(bschwind) - Support shared subscriptions

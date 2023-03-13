@@ -276,7 +276,21 @@ dependencies = [
 ]
 
 [[package]]
-name = "mqtt-v5"
+name = "mqtt-v5-broker"
+version = "0.1.0"
+dependencies = [
+ "bytes",
+ "env_logger",
+ "futures",
+ "log",
+ "mqtt-v5-fork",
+ "nanoid",
+ "tokio",
+ "tokio-util",
+]
+
+[[package]]
+name = "mqtt-v5-fork"
 version = "0.2.0"
 dependencies = [
  "base64 0.11.0",
@@ -285,20 +299,6 @@ dependencies = [
  "sha1",
  "tokio-util",
  "websocket-codec",
-]
-
-[[package]]
-name = "mqtt-v5-broker"
-version = "0.1.0"
-dependencies = [
- "bytes",
- "env_logger",
- "futures",
- "log",
- "mqtt-v5",
- "nanoid",
- "tokio",
- "tokio-util",
 ]
 
 [[package]]

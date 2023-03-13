@@ -2,7 +2,7 @@
 use libfuzzer_sys::fuzz_target;
 
 use bytes::BytesMut;
-use mqtt_v5::{decoder, types::ProtocolVersion};
+use mqtt_v5_fork::{decoder, types::ProtocolVersion};
 
 fuzz_target!(|data: &[u8]| {
     let mut bytes = BytesMut::new();

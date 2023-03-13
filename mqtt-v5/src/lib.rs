@@ -1,3 +1,4 @@
+#![forbid(unsafe_code)]
 pub const TOPIC_SEPARATOR: char = '/';
 
 pub const MULTI_LEVEL_WILDCARD: char = '#';

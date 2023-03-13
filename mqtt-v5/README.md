@@ -9,7 +9,7 @@ Rust types, encode/decode functions, and a tokio codec for MQTT V5.
 
 # Feature Flags
 
-`codec`: Export an `MqttCodec` type under `mqtt_v5::codec::MqttCodec`. Enabled by default.
+`codec`: Export an `MqttCodec` type under `mqtt_v5_fork::codec::MqttCodec`. Enabled by default.
 
 # Build
 

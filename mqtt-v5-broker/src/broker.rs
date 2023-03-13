@@ -1,6 +1,6 @@
 use crate::{client::ClientMessage, tree::SubscriptionTree};
 use log::{info, warn};
-use mqtt_v5::{
+use mqtt_v5_fork::{
     topic::TopicFilter,
     types::{
         properties::{AssignedClientIdentifier, SessionExpiryInterval},
@@ -704,7 +704,7 @@ mod tests {
         broker::{Broker, BrokerMessage},
         client::ClientMessage,
     };
-    use mqtt_v5::types::{properties::*, ProtocolVersion, *};
+    use mqtt_v5_fork::types::{properties::*, ProtocolVersion, *};
     use tokio::{
         runtime::Runtime,
         sync::mpsc::{self, Sender},

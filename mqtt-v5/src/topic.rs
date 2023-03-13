@@ -27,7 +27,7 @@ impl TopicFilter {
 /// # Example
 /// ```rust
 /// use std::str::FromStr;
-/// use mqtt_v5::topic::Topic;
+/// use mqtt_v5_fork::topic::Topic;
 /// let topic = Topic::from_str("my_topic").unwrap();
 /// ```
 #[derive(Debug, Default, Clone, PartialEq, Eq)]

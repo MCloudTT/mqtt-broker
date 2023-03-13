@@ -4,7 +4,7 @@ use futures::{
     stream, Sink, SinkExt, Stream, StreamExt,
 };
 use log::{debug, info, trace, warn};
-use mqtt_v5::{
+use mqtt_v5_fork::{
     codec::MqttCodec,
     types::{
         DecodeError, DisconnectPacket, DisconnectReason, EncodeError, Packet, ProtocolError,
@@ -21,7 +21,7 @@ use tokio::{
 use tokio_util::codec::Framed;
 
 use bytes::BytesMut;
-use mqtt_v5::{
+use mqtt_v5_fork::{
     encoder,
     websocket::{
         codec::{Message, MessageCodec as WsMessageCodec, Opcode},
@@ -112,7 +112,7 @@ where
                 // to decode a new MQTT packet
                 loop {
                     // Try to read an MQTT packet from the read buffer
-                    match mqtt_v5::decoder::decode_mqtt(&mut read_buf, protocol_version) {
+                    match mqtt_v5_fork::decoder::decode_mqtt(&mut read_buf, protocol_version) {
                         Ok(Some(packet)) => {
                             if let Packet::Connect(packet) = &packet {
                                 protocol_version = packet.protocol_version;
