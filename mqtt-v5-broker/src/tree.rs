@@ -161,7 +161,7 @@ impl<T: std::fmt::Debug> SubscriptionTreeNode<T> {
 
         // Go up the stack, cleaning up empty nodes
         while let Some((stack_val, level_index)) = stack.pop() {
-            let mut tree = unsafe { &mut *stack_val };
+            let tree = unsafe { &mut *stack_val };
 
             let level = &levels[level_index];
 

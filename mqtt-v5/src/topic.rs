@@ -16,11 +16,8 @@ pub enum TopicFilter {
 }
 
 impl TopicFilter {
-    pub fn new_concrete(filter: String) -> Self{
-        TopicFilter::Concrete {
-            filter,
-            level_count: 1,
-        }
+    pub fn new_concrete(filter: String) -> Self {
+        TopicFilter::Concrete { filter, level_count: 1 }
     }
 }
 
@@ -209,13 +206,9 @@ impl FromStr for Topic {
     type Err = TopicParseError;
 
     fn from_str(topic: &str) -> Result<Self, Self::Err> {
-
         // Topics cannot be empty
         if topic.is_empty() {
             return Err(TopicParseError::EmptyTopic);
-        }
-        if topic.starts_with('$') {
-            return Err(TopicParseError::ReservedTopicBeginning);
         }
 
         // Topics cannot exceed the byte length in the MQTT spec
